@@ -42,7 +42,6 @@ ExportedObj/
 *.mdb
 *.opendb
 *.VC.db
-*.json
 
 # Unity3D generated meta files
 *.pidb.meta
@@ -58,5 +57,3 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
-
-Packages/packages-lock.json
