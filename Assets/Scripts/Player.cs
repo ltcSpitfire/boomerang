@@ -63,6 +63,15 @@ public class Player : MonoBehaviour
         Vector2 playerVelocity = new Vector2(controlThrow * runSpeed, myRigidBody.velocity.y);
         myRigidBody.velocity = playerVelocity;
 
+        if (controlThrow == 0)
+        {
+            myRigidBody.sharedMaterial = maxFriction;
+        }
+        else
+        {
+            myRigidBody.sharedMaterial = maxFriction;
+        }
+
         // Checks if we are running, then changes animation state
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
         myAnimator.SetBool("isRunning", playerHasHorizontalSpeed);
@@ -84,11 +93,6 @@ public class Player : MonoBehaviour
         {
             myAnimator.SetBool("isJumping", true);
         }
-    }
-
-    public void OnLanding()
-    {
-        myAnimator.SetBool("isJumping", false);
     }
 
     private void SlopeCheck()
@@ -130,7 +134,6 @@ public class Player : MonoBehaviour
 
         if (hit)
         {
-
             slopeNormalPerp = Vector2.Perpendicular(hit.normal).normalized;
 
             slopeDownAngle = Vector2.Angle(hit.normal, Vector2.up);
