@@ -20,16 +20,16 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -2222671339359911295, guid: 9ce93294b7559f348a7af368927fb452,
-        type: 3}
-    - time: 0.083333336
-      value: {fileID: 2425431467501175809, guid: 9ce93294b7559f348a7af368927fb452,
+      value: {fileID: -743574260923404329, guid: 9f5054f074e18814eae12ffa868c5899,
         type: 3}
     - time: 0.16666667
-      value: {fileID: 6869693272701700846, guid: 9ce93294b7559f348a7af368927fb452,
+      value: {fileID: 7740607249621568444, guid: 9f5054f074e18814eae12ffa868c5899,
         type: 3}
-    - time: 0.25
-      value: {fileID: 2040477417508173474, guid: 9ce93294b7559f348a7af368927fb452,
+    - time: 0.33333334
+      value: {fileID: 7408749945275818682, guid: 9f5054f074e18814eae12ffa868c5899,
+        type: 3}
+    - time: 0.5
+      value: {fileID: -8298335142436343970, guid: 9f5054f074e18814eae12ffa868c5899,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -50,16 +50,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -2222671339359911295, guid: 9ce93294b7559f348a7af368927fb452, type: 3}
-    - {fileID: 2425431467501175809, guid: 9ce93294b7559f348a7af368927fb452, type: 3}
-    - {fileID: 6869693272701700846, guid: 9ce93294b7559f348a7af368927fb452, type: 3}
-    - {fileID: 2040477417508173474, guid: 9ce93294b7559f348a7af368927fb452, type: 3}
+    - {fileID: -743574260923404329, guid: 9f5054f074e18814eae12ffa868c5899, type: 3}
+    - {fileID: 7740607249621568444, guid: 9f5054f074e18814eae12ffa868c5899, type: 3}
+    - {fileID: 7408749945275818682, guid: 9f5054f074e18814eae12ffa868c5899, type: 3}
+    - {fileID: -8298335142436343970, guid: 9f5054f074e18814eae12ffa868c5899, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
