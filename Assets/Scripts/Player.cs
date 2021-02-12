@@ -22,8 +22,12 @@ public class Player : MonoBehaviour
     private Vector2 slopeNormalPerp;
     private float controlThrow;
 
+    private bool isGrounded;    //Variable for ground check
+    public Transform feetPos;   //Variable for ground check
+    public float checkRadius;   //Variable for ground check
+
     // States
-    bool isAlive = true;
+    //bool isAlive = true;
 
     // Cached component references
     Rigidbody2D myRigidBody;
@@ -48,11 +52,14 @@ public class Player : MonoBehaviour
         Jump();
         SlopeCheck();
         FlipSprite();
+
+        //States what bool isGrounded is
+        isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
     }
 
     private void Run()
     {
-        controlThrow = CrossPlatformInputManager.GetAxis("Horizontal"); // value is between -1 to +1
+        controlThrow = CrossPlatformInputManager.GetAxisRaw("Horizontal"); // value is between -1 to +1
         Vector2 playerVelocity = new Vector2(controlThrow * runSpeed, myRigidBody.velocity.y);
         myRigidBody.velocity = playerVelocity;
 
@@ -63,16 +70,25 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if(!myCollider2D.IsTouchingLayers(LayerMask.GetMask("Ground")))
-        {
-            return;
-        }
-
-        if (CrossPlatformInputManager.GetButtonDown("Jump"))
+        if (isGrounded == true && CrossPlatformInputManager.GetButtonDown("Jump"))
         {
             Vector2 jumpVelocityToAdd = new Vector2(0f, jumpStrength);
             myRigidBody.velocity += jumpVelocityToAdd;
+            myAnimator.SetBool("isJumping", true);
         }
+        if(isGrounded == true)
+        {
+            myAnimator.SetBool("isJumping", false);
+        }
+        else
+        {
+            myAnimator.SetBool("isJumping", true);
+        }
+    }
+
+    public void OnLanding()
+    {
+        myAnimator.SetBool("isJumping", false);
     }
 
     private void SlopeCheck()

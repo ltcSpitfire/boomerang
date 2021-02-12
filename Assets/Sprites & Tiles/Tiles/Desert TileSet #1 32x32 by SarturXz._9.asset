@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Desert TileSet #1 32x32 by SarturXz
+  m_Name: Desert TileSet #1 32x32 by SarturXz._9
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 2189358717292015247, guid: 2e94a229337140e488615a5b1d4a8e0d,
     type: 3}
