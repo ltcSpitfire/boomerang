@@ -22,13 +22,14 @@ public class Player : MonoBehaviour
     private Vector2 slopeNormalPerp;
     private float controlThrow;
 
-    private bool isGrounded;    //Variable for ground check
+    [SerializeField] private bool isGrounded;    //Variable for ground check
     public Transform feetPos;   //Variable for ground check
     public float checkRadius;   //Variable for ground check
 
     private float jumpTimeCounter;
     public float jumpTime;
     private bool isJumping;
+    public float jumpHorizontalMultiplier;
 
     // States
     //bool isAlive = true;
@@ -88,16 +89,16 @@ public class Player : MonoBehaviour
             isJumping = true;
             jumpTimeCounter = jumpTime;
             //Vector2 jumpVelocityToAdd = new Vector2(0f, jumpStrength);
-            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpStrength);
+            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x * jumpHorizontalMultiplier, jumpStrength);
             myAnimator.SetBool("isJumping", true);
         }
 
         if (CrossPlatformInputManager.GetButton("Jump") && isJumping == true)
         {
-            if(jumpTimeCounter > 0)
+            if (jumpTimeCounter > 0)
             {
                 //Vector2 jumpVelocityToAdd = new Vector2(0f, jumpStrength);
-                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpStrength);
+                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x * jumpHorizontalMultiplier, jumpStrength);
                 jumpTimeCounter -= Time.deltaTime;
             }
             else
@@ -176,7 +177,7 @@ public class Player : MonoBehaviour
 
         }
 
-        if (isOnSlope && controlThrow == 0.0f)
+        if (isOnSlope && controlThrow == 0.0f && isGrounded)
         {
             myRigidBody.sharedMaterial = maxFriction;
         }
