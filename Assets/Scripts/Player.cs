@@ -6,8 +6,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     // Config Variables
-    [SerializeField] float runSpeed = 5f;
-    [SerializeField] float jumpStrength = 5f;
+    [SerializeField] float runSpeed;
+    [SerializeField] float jumpStrength;
     [SerializeField] PhysicsMaterial2D zeroFriction;
     [SerializeField] PhysicsMaterial2D maxFriction;
     [SerializeField] float slopeCheckDistance;
@@ -25,6 +25,10 @@ public class Player : MonoBehaviour
     private bool isGrounded;    //Variable for ground check
     public Transform feetPos;   //Variable for ground check
     public float checkRadius;   //Variable for ground check
+
+    private float jumpTimeCounter;
+    public float jumpTime;
+    private bool isJumping;
 
     // States
     //bool isAlive = true;
@@ -81,11 +85,33 @@ public class Player : MonoBehaviour
     {
         if (isGrounded == true && CrossPlatformInputManager.GetButtonDown("Jump"))
         {
-            Vector2 jumpVelocityToAdd = new Vector2(0f, jumpStrength);
-            myRigidBody.velocity += jumpVelocityToAdd;
+            isJumping = true;
+            jumpTimeCounter = jumpTime;
+            //Vector2 jumpVelocityToAdd = new Vector2(0f, jumpStrength);
+            myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpStrength);
             myAnimator.SetBool("isJumping", true);
         }
-        if(isGrounded == true)
+
+        if (CrossPlatformInputManager.GetButton("Jump") && isJumping == true)
+        {
+            if(jumpTimeCounter > 0)
+            {
+                //Vector2 jumpVelocityToAdd = new Vector2(0f, jumpStrength);
+                myRigidBody.velocity = new Vector2(myRigidBody.velocity.x, jumpStrength);
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+
+        if (CrossPlatformInputManager.GetButtonUp("Jump"))
+        {
+            isJumping = false;
+        }
+
+        if (isGrounded == true)
         {
             myAnimator.SetBool("isJumping", false);
         }
@@ -160,6 +186,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Flips the player sprite depending on the direction of travel
     private void FlipSprite()
     {
         bool playerHasHorizontalSpeed = Mathf.Abs(myRigidBody.velocity.x) > Mathf.Epsilon;
