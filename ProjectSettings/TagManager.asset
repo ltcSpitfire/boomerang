@@ -50,3 +50,6 @@ TagManager:
   - name: Foreground
     uniqueID: 3062386899
     locked: 0
+  - name: Fade In and Out
+    uniqueID: 2094862155
+    locked: 0
