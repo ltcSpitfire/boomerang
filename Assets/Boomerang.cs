@@ -11,6 +11,7 @@ public class Boomerang : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
@@ -29,5 +30,6 @@ public class Boomerang : MonoBehaviour
         hasHitForeground = true;
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
+        gameObject.layer = 8; //Changes boomerang layer to "Ground" so the player can jump on it
     }
 }
