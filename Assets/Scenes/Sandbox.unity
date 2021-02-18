@@ -19427,26 +19427,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -370261236538064589, guid: 16bc2502084a6f9409150caef25dac1a,
+    - target: {fileID: 2339270999796811528, guid: 16bc2502084a6f9409150caef25dac1a,
         type: 3}
-      propertyPath: m_GravityScale
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408891230, guid: 16bc2502084a6f9409150caef25dac1a, type: 3}
-      propertyPath: jumpTime
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408891230, guid: 16bc2502084a6f9409150caef25dac1a, type: 3}
-      propertyPath: jumpStrength
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408891230, guid: 16bc2502084a6f9409150caef25dac1a, type: 3}
-      propertyPath: slopeCheckDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1408891230, guid: 16bc2502084a6f9409150caef25dac1a, type: 3}
-      propertyPath: jumpHorizontalMultiplier
-      value: 1.2
+      propertyPath: m_LocalPosition.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9063430511749743709, guid: 16bc2502084a6f9409150caef25dac1a,
         type: 3}
