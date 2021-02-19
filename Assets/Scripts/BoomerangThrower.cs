@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoomerangThrow : MonoBehaviour
+public class BoomerangThrower : MonoBehaviour
 {
     public GameObject boomerang;
     public float throwForce;
