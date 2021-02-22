@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 9063430511749743712}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1004386278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1004386279}
+  m_Layer: 9
+  m_Name: Max Range
+  m_TagString: Max Range
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1004386279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004386278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9063430511749743712}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6466194627733347914
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,9 +100,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2339270999796811528}
   - component: {fileID: 985793129}
+  - component: {fileID: 1137320237}
   m_Layer: 9
   m_Name: Throw point
-  m_TagString: Untagged
+  m_TagString: Throw Point
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +139,34 @@ MonoBehaviour:
   throwForce: 15
   throwPoint: {fileID: 2339270999796811528}
   aimPosition: {fileID: 766374276}
+  maxRange: {fileID: 1004386279}
+  maxDistance: 5
+--- !u!61 &1137320237
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197381857391768542}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.0062635, y: -0.0049264133}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.1454554, y: 0.37925583}
+  m_EdgeRadius: 0
 --- !u!1 &9063430511749743709
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +183,7 @@ GameObject:
   - component: {fileID: 1408891230}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,6 +202,7 @@ Transform:
   - {fileID: 6974692783881515628}
   - {fileID: 2339270999796811528}
   - {fileID: 766374276}
+  - {fileID: 1004386279}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

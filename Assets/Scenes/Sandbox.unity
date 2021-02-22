@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 289488051}
   m_Layer: 8
   m_Name: Foreground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25541,15 +25541,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 985793129, guid: 16bc2502084a6f9409150caef25dac1a, type: 3}
-      propertyPath: maxDistance
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2339270999796811528, guid: 16bc2502084a6f9409150caef25dac1a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9063430511749743709, guid: 16bc2502084a6f9409150caef25dac1a,
         type: 3}
       propertyPath: m_Name
