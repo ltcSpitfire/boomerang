@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8578129910961700272}
   m_Layer: 11
   m_Name: boomerangtemp
-  m_TagString: Untagged
+  m_TagString: Boomerang
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,7 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 107afb557aa2b1a459493a32dfe155cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bThrower: {fileID: 0}
   throwForce: 15
   boomerangLifetime: 4
   isReturning: 0
   hitGround: 0
+  canBeDestroyed: 0

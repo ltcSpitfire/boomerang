@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
+    public BoomerangThrower bThrower;
+
     Rigidbody2D rb;
 
     public float throwForce;
@@ -19,6 +21,9 @@ public class Boomerang : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameObject b = GameObject.FindGameObjectWithTag("Throw Point");
+        bThrower = b.GetComponent<BoomerangThrower>();
+
         isReturning = false;
         hitGround = false;
         canBeDestroyed = false;
@@ -44,6 +49,7 @@ public class Boomerang : MonoBehaviour
                 canBeDestroyed = true;
             }
         }
+
         if (isReturning && !hitGround)
         {
             transform.position = Vector2.MoveTowards(transform.position, throwPoint.position, throwForce * Time.deltaTime);
@@ -53,7 +59,11 @@ public class Boomerang : MonoBehaviour
                 DestroyBoomerang();
             }
         }
-        
+
+        if (Input.GetMouseButtonDown(1) && hitGround)
+        {
+            DestroyBoomerang();
+        }
     }
 
     //Checks if the boomerang has hit the foreground layer then freezes the object
@@ -67,7 +77,7 @@ public class Boomerang : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.isKinematic = true;
             gameObject.layer = 8; //Changes boomerang layer to "Ground" so the player can jump on it
-            Destroy(gameObject, boomerangLifetime);
+            StartCoroutine(DestroyAfterTime(boomerangLifetime));
         }
     }
 
@@ -82,5 +92,23 @@ public class Boomerang : MonoBehaviour
     private void DestroyBoomerang()
     {
         Destroy(gameObject);
+        bThrower.created = false;
+    }
+
+    IEnumerator DestroyAfterTime(float boomerangLifeTime)
+    {
+        yield return new WaitForSeconds(boomerangLifetime);
+        DestroyBoomerang();
+    }
+
+    public void BoomerangReturn()
+    {
+        if (bThrower.readyToReturn == true)
+        {
+            //later add poof effect for disappearing
+            Destroy(gameObject);
+            bThrower.created = false;
+            bThrower.readyToReturn = false;
+        }
     }
 }
