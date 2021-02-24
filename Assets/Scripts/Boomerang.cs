@@ -53,6 +53,7 @@ public class Boomerang : MonoBehaviour
         if (isReturning && !hitGround)
         {
             transform.position = Vector2.MoveTowards(transform.position, throwPoint.position, throwForce * Time.deltaTime);
+
             if (transform.position.x == throwPoint.position.x && transform.position.y == throwPoint.position.y)
             {
                 isReturning = false;
@@ -99,16 +100,5 @@ public class Boomerang : MonoBehaviour
     {
         yield return new WaitForSeconds(boomerangLifetime);
         DestroyBoomerang();
-    }
-
-    public void BoomerangReturn()
-    {
-        if (bThrower.readyToReturn == true)
-        {
-            //later add poof effect for disappearing
-            Destroy(gameObject);
-            bThrower.created = false;
-            bThrower.readyToReturn = false;
-        }
     }
 }
