@@ -146,6 +146,7 @@ MonoBehaviour:
   bThrower: {fileID: 0}
   throwForce: 15
   boomerangLifetime: 4
-  isReturning: 0
+  movingToSecondTarget: 0
+  movingToFinalTarget: 0
   hitGround: 0
   canBeDestroyed: 0

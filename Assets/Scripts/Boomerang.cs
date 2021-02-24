@@ -12,9 +12,12 @@ public class Boomerang : MonoBehaviour
     public float boomerangLifetime;
     private Transform throwPoint;
     private Transform maxRange;
-    private Vector2 target;
-    private Vector2 returnTarget;
-    public bool isReturning;
+    private Transform returnTarget;
+    private Vector2 firstTarget;
+    private Vector2 finalTarget;
+    private Vector2 secondTarget;
+    public bool movingToSecondTarget;
+    public bool movingToFinalTarget;
     public bool hitGround;
     public bool canBeDestroyed;
 
@@ -24,39 +27,57 @@ public class Boomerang : MonoBehaviour
         GameObject b = GameObject.FindGameObjectWithTag("Throw Point");
         bThrower = b.GetComponent<BoomerangThrower>();
 
-        isReturning = false;
+        movingToSecondTarget = false;
+        movingToFinalTarget = false;
         hitGround = false;
         canBeDestroyed = false;
         rb = GetComponent<Rigidbody2D>();
         
         throwPoint = GameObject.FindGameObjectWithTag("Throw Point").transform;
         maxRange = GameObject.FindGameObjectWithTag("Max Range").transform;
-        target = new Vector2(maxRange.position.x, maxRange.position.y);
-        returnTarget = new Vector2(throwPoint.position.x, throwPoint.position.y);
-
+        returnTarget = GameObject.FindGameObjectWithTag("Return Target").transform;
+        firstTarget = new Vector2(maxRange.position.x, maxRange.position.y);
+        secondTarget = new Vector2(returnTarget.position.x, returnTarget.position.y);
+        finalTarget = new Vector2(throwPoint.position.x, throwPoint.position.y);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isReturning && !hitGround)
+        if (!movingToSecondTarget && !hitGround)
         {
-            transform.position = Vector2.MoveTowards(transform.position, target, throwForce * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, firstTarget, throwForce * Time.deltaTime);
 
-            if (transform.position.x == target.x && transform.position.y == target.y)
+            if (transform.position.x == firstTarget.x && transform.position.y == firstTarget.y)
             {
-                isReturning = true;
+                movingToSecondTarget = true;
                 canBeDestroyed = true;
             }
         }
 
-        if (isReturning && !hitGround)
+        if (movingToSecondTarget && !hitGround)
         {
+            gameObject.layer = 8;
+            rb.isKinematic = true;
+            transform.position = Vector2.MoveTowards(transform.position, secondTarget, throwForce * Time.deltaTime);
+
+            if (transform.position.x == secondTarget.x && transform.position.y == secondTarget.y)
+            {
+                movingToSecondTarget = false;
+                movingToFinalTarget = true;
+                canBeDestroyed = true;
+            }
+        }
+
+        if (movingToFinalTarget && !hitGround)
+        {
+            gameObject.layer = 11;
+            rb.isKinematic = false;
             transform.position = Vector2.MoveTowards(transform.position, throwPoint.position, throwForce * Time.deltaTime);
 
             if (transform.position.x == throwPoint.position.x && transform.position.y == throwPoint.position.y)
             {
-                isReturning = false;
+                movingToFinalTarget = false;
                 DestroyBoomerang();
             }
         }

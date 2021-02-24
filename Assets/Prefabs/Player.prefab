@@ -60,6 +60,36 @@ Transform:
   m_Father: {fileID: 9063430511749743712}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1507538288865419646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 31692650532362006}
+  m_Layer: 9
+  m_Name: Return Target
+  m_TagString: Return Target
+  m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &31692650532362006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507538288865419646}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.64, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9063430511749743712}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6466194627733347914
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +170,7 @@ MonoBehaviour:
   throwPoint: {fileID: 2339270999796811528}
   aimPosition: {fileID: 766374276}
   maxRange: {fileID: 1004386279}
-  maxDistance: 5
+  created: 0
 --- !u!61 &1137320237
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -203,6 +233,7 @@ Transform:
   - {fileID: 2339270999796811528}
   - {fileID: 766374276}
   - {fileID: 1004386279}
+  - {fileID: 31692650532362006}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

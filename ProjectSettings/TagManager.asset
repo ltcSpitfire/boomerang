@@ -8,6 +8,7 @@ TagManager:
   - Throw Point
   - Ground
   - Boomerang
+  - Return Target
   layers:
   - Default
   - TransparentFX
