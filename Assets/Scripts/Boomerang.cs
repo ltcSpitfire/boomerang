@@ -91,8 +91,6 @@ public class Boomerang : MonoBehaviour
     //Checks if the boomerang has hit the foreground layer then freezes the object
     private void OnCollisionEnter2D(Collision2D collision) //note to self: add check for tag later for dealing with enemies
     {
-       
-
         if (collision.gameObject.tag == "Ground")
         {
             hitGround = true;
@@ -100,6 +98,11 @@ public class Boomerang : MonoBehaviour
             rb.isKinematic = true;
             gameObject.layer = 8; //Changes boomerang layer to "Ground" so the player can jump on it
             StartCoroutine(DestroyAfterTime(boomerangLifetime));
+        }
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            movingToFinalTarget = true;
         }
     }
 
