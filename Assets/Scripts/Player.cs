@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     private bool isOnSlope;
     private Vector2 slopeNormalPerp;
     private float controlThrow;
+    public GameObject[] players;
+
+
+    
 
     [SerializeField] private bool isGrounded;    //Variable for ground check
     public Transform feetPos;   //Variable for ground check
@@ -46,6 +50,8 @@ public class Player : MonoBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myCollider2D = GetComponent<CapsuleCollider2D>();
+
+        //DontDestroyOnLoad(gameObject);
 
         colliderSize = myCollider2D.size;
     }
@@ -196,4 +202,24 @@ public class Player : MonoBehaviour
             transform.localScale = new Vector2(Mathf.Sign(myRigidBody.velocity.x), 1f);
         }
     }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        FindStartPos();
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+
+        //if(players.Length > 1)
+        {
+            //Destroy(players[1]); 
+        }
+
+
+    }
+
+    void FindStartPos()
+    {
+        transform.position = GameObject.FindWithTag("StartPos").transform.position;
+    }
+
 }

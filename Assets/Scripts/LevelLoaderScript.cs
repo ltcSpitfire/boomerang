@@ -7,16 +7,25 @@ public class LevelLoaderScript : MonoBehaviour
 {
     public Animator transition;
     public float transitionTime = 1f;
+    public int iLevelToLoad;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+
+        GameObject collisionGameObject = collision.gameObject;
+
+        if(collisionGameObject.name == "Player")
+        {
+            StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+
+        }
+
     }
 
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(iLevelToLoad);
     }
 }

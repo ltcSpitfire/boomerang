@@ -10,6 +10,7 @@ TagManager:
   - Boomerang
   - Return Target
   - Enemy
+  - StartPos
   layers:
   - Default
   - TransparentFX
