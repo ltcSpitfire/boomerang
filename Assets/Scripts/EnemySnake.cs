@@ -19,7 +19,7 @@ public class EnemySnake : MonoBehaviour
     Rigidbody2D myRigidBody;
 
     private float noMovementThreshold = 0.0001f;
-    private const int noMovementFrames = 5;
+    private const int noMovementFrames = 10;
     Vector2[] previousLocations = new Vector2[noMovementFrames];
     private bool isMoving;
 
