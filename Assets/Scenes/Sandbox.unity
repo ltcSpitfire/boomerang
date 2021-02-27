@@ -25160,8 +25160,18 @@ PrefabInstance:
       objectReference: {fileID: 1449882652}
     - target: {fileID: 3223368937998836199, guid: ae0dcc1657afe744d811328c064d0d10,
         type: 3}
+      propertyPath: moveSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3223368937998836199, guid: ae0dcc1657afe744d811328c064d0d10,
+        type: 3}
       propertyPath: aggroRange
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3223368937998836199, guid: ae0dcc1657afe744d811328c064d0d10,
+        type: 3}
+      propertyPath: aggroMoveSpeed
+      value: 2.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae0dcc1657afe744d811328c064d0d10, type: 3}

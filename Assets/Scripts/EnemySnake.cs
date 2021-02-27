@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySnake : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
+    [SerializeField] float aggroMoveSpeed;
 
     public GameObject player;
     private Transform playerPos;
@@ -45,6 +46,7 @@ public class EnemySnake : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //for loops are to prevent the snake from getting stuck after losing aggro
         for (int i = 0; i < previousLocations.Length - 1; i++)
         {
             previousLocations[i] = previousLocations[i + 1];
@@ -143,12 +145,12 @@ public class EnemySnake : MonoBehaviour
 
         if (transform.position.x < player.transform.position.x)
         {
-            myRigidBody.velocity = new Vector2(moveSpeed, 0); //enemy is to the left side of player, move enemy right
+            myRigidBody.velocity = new Vector2(aggroMoveSpeed, 0); //enemy is to the left side of player, move enemy right
             transform.localScale = new Vector2(1, 1);
         }
         else
         {
-            myRigidBody.velocity = new Vector2(-moveSpeed, 0); //enemy is to the right side of player, move enemy left
+            myRigidBody.velocity = new Vector2(-aggroMoveSpeed, 0); //enemy is to the right side of player, move enemy left
             transform.localScale = new Vector2(-1, 1);
         }
     }
