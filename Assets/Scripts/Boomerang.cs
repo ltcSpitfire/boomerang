@@ -63,7 +63,7 @@ public class Boomerang : MonoBehaviour
             {
                 Debug.Log("Boomerang searching for second target");
                 gameObject.layer = 8;
-                //rb.isKinematic = true;
+                rb.isKinematic = true;
                 transform.position = Vector2.MoveTowards(transform.position, secondTarget, throwForce * Time.deltaTime);
 
                 if (transform.position.x == secondTarget.x && transform.position.y == secondTarget.y)
@@ -78,7 +78,7 @@ public class Boomerang : MonoBehaviour
             {
                 Debug.Log("Boomerang searching for final target");
                 gameObject.layer = 11;
-                //rb.isKinematic = false;
+                rb.isKinematic = false;
                 transform.position = Vector2.MoveTowards(transform.position, throwPoint.position, throwForce * Time.deltaTime);
             }
         }

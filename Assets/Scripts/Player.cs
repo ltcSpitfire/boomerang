@@ -5,6 +5,20 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class Player : MonoBehaviour
 {
+    //Player Health related
+    public int maxHealth = 10;
+    public int currentHealth;
+    public HealthBar healthBar;
+    public bool isDead = false;
+    [SerializeField] Vector2 knockback = new Vector2(25f, 25f);
+    /*[SerializeField]
+    private Vector2 knockBackSpeed;
+    public bool knockback;
+    private float knockbackStartTime;
+    [SerializeField]
+    private float knockbackDuration;
+    public int direction;*/
+
     // Config Variables
     [SerializeField] float runSpeed;
     [SerializeField] float jumpStrength;
@@ -35,8 +49,6 @@ public class Player : MonoBehaviour
     private bool isJumping;
     public float jumpHorizontalMultiplier;
 
-    // States
-    //bool isAlive = true;
 
     // Cached component references
     Rigidbody2D myRigidBody;
@@ -51,18 +63,23 @@ public class Player : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myCollider2D = GetComponent<CapsuleCollider2D>();
 
-        //DontDestroyOnLoad(gameObject);
-
         colliderSize = myCollider2D.size;
+
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDead) { return; }
+
         Run();
         Jump();
         SlopeCheck();
         FlipSprite();
+        //Damage();
+        //CheckKnockback();
 
         //States what bool isGrounded is
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkRadius, whatIsGround);
@@ -222,4 +239,66 @@ public class Player : MonoBehaviour
         transform.position = GameObject.FindWithTag("StartPos").transform.position;
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        healthBar.SetHealth(currentHealth);
+
+        if (currentHealth >= 1)
+        {
+            //myRigidBody.velocity = new Vector2(damageForce.x * direction, damageForce.y);
+        }
+
+        if (currentHealth == 0)
+        {
+            isDead = true;
+            //FindObjectOfType<GameHandler>().GameOver();
+        }
+    }
+
+    private void Damage()
+    {
+        if (myCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            //isDead = false;
+            //myAnimator.SetTrigger("Dying");
+            GetComponent<Rigidbody2D>().velocity = knockback;
+            TakeDamage(2);
+        }
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemy damaged you!");
+            TakeDamage(2);
+            /*if (transform.position.x > collision.transform.position.x)
+            {
+                direction = 1;
+            }
+            else
+            {
+                direction = -1;
+            }
+            Knockback(direction);*/
+        }
+    }
+    /*
+    public void Knockback(int direction)
+    {
+        knockback = true;
+        knockbackStartTime = Time.time;
+        myRigidBody.velocity = new Vector2(knockBackSpeed.x * direction, knockBackSpeed.y);
+    }
+
+    private void CheckKnockback()
+    {
+        if(Time.time >= knockbackStartTime + knockbackDuration && knockback)
+        {
+            knockback = false;
+            myRigidBody.velocity = new Vector2(0.0f, myRigidBody.velocity.y);
+        }
+    }*/
 }

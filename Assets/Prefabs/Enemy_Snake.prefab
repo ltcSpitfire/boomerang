@@ -118,9 +118,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cfa2fae46e04e845a017afb18fa5a67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 1.5
+  aggroMoveSpeed: 2.5
   player: {fileID: 0}
-  distanceToPlayer: 5
+  moveThreshold: 0
+  aggroRange: 5
+  hasAggro: 0
+  triggerExitActivated: 0
 --- !u!61 &3223368937998836192
 BoxCollider2D:
   m_ObjectHideFlags: 0
