@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemySnake : MonoBehaviour
 {
+    //Snake health
+    public int maxHealth = 2;
+    public int currentHealth;
+
     [SerializeField] float moveSpeed;
     [SerializeField] float aggroMoveSpeed;
 
@@ -18,6 +22,7 @@ public class EnemySnake : MonoBehaviour
     new SpriteRenderer renderer;
 
     Rigidbody2D myRigidBody;
+    BoxCollider2D myBoxCollider2D;
 
     private float noMovementThreshold = 0.0001f;
     private const int noMovementFrames = 10;
@@ -35,6 +40,7 @@ public class EnemySnake : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        currentHealth = maxHealth;
         hasAggro = false;
         triggerExitActivated = false;
         myRigidBody = GetComponent<Rigidbody2D>();
@@ -152,6 +158,31 @@ public class EnemySnake : MonoBehaviour
         {
             myRigidBody.velocity = new Vector2(-aggroMoveSpeed, 0); //enemy is to the right side of player, move enemy left
             transform.localScale = new Vector2(-1, 1);
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+
+        if (currentHealth >= 1)
+        {
+            //myRigidBody.velocity = new Vector2(damageForce.x * direction, damageForce.y);
+        }
+
+        if (currentHealth == 0)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Boomerang")
+        {
+            Debug.Log("Enemy damaged you!");
+            TakeDamage(1);
+
         }
     }
 }
