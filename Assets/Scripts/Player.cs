@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isDead) { return; }
+        if (isDead) { return; } //When true player can no longer take input
 
         Run();
         Jump();
@@ -247,16 +247,18 @@ public class Player : MonoBehaviour
 
         if (currentHealth >= 1)
         {
+            //Apply knockback effect
             //myRigidBody.velocity = new Vector2(damageForce.x * direction, damageForce.y);
         }
 
         if (currentHealth == 0)
         {
+            //Player is dead
             isDead = true;
-            //FindObjectOfType<GameHandler>().GameOver();
+            FindObjectOfType<GameManager>().GameOver();
         }
     }
-
+    /*
     private void Damage()
     {
         if (myCollider2D.IsTouchingLayers(LayerMask.GetMask("Enemy")))
@@ -267,7 +269,7 @@ public class Player : MonoBehaviour
             TakeDamage(2);
         }
     }
-    
+    */
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Enemy")
